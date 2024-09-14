@@ -22,6 +22,8 @@ public class Main {
             } else if (choice == 4) {
                 displayMemberships();
             } else if (choice == 5) {
+                displayTaxableItems();
+            } else if (choice == 6) {
                 break;
             }
         } while (true);
@@ -32,24 +34,29 @@ public class Main {
             int choice = 0;
 
             while (true) {
+                System.out.println();
+                System.out.println("----------------------");
                 System.out.println("Menu: ");
+                System.out.println("----------------------");
                 System.out.println("1. Add a product");
                 System.out.println("2. List all products");
                 System.out.println("3. Add a membership");
                 System.out.println("4. List all memberships");
-                System.out.println("5. Exit");
-                System.out.println("Enter your choice: ");
+                System.out.println("5. Display all taxable items");
+                System.out.println("6. Exit");
+                System.out.print("Enter your choice: ");
                 choice = scanner.nextInt(); // consume the newline character
                 scanner.nextLine(); // consume the newline character after scanner.nextInt()
-                if (choice >= 1 && choice <= 5) {
+                if (choice >= 1 && choice <= 6) {
                     break;
                 }
             }
+            System.out.println();
             return choice;
         }
 
         private static void addNewMembership() {
-            System.out.println("Enter membership type: ");
+            System.out.println("Enter membership type (Silver / Gold): ");
             String type = scanner.nextLine();
             System.out.println("Enter membership cost: ");
             double cost = scanner.nextDouble();
@@ -57,12 +64,14 @@ public class Main {
 
             Membership newMembership = new Membership(type, cost);
             membershipList.add(newMembership);
-
+            System.out.println();
             System.out.println("Membership added successfully !");
         }
 
         private static void displayMemberships() {
+            System.out.println("----------------------");
             System.out.println("Memberships: ");
+            System.out.println("----------------------");
             for (Membership membership : membershipList) {
                 System.out.println("Type: " + membership.getType());
                 System.out.println("Cost: $" + membership.getCost());
@@ -70,7 +79,6 @@ public class Main {
                 System.out.println("----------------------");
             }
         }
-
 
 private static void addNewProduct() {
     System.out.println("Enter the name of the product: ");
@@ -80,38 +88,45 @@ private static void addNewProduct() {
     scanner.nextLine(); // consume the newline character in the buffer
     System.out.println("Enter the SKU of the product: ");
     String sku = scanner.nextLine();
+    System.out.println();
 
     while (true) {
         System.out.println("Choose the type of product: ");
         System.out.println("1. Physical Product");
         System.out.println("2. Digital Product");
+        System.out.print("Enter product type: ");
         int choice = scanner.nextInt();
+        System.out.println();
 
         if (choice == 1) {
-            System.out.println("Enter the size of the physical product: ");
+            System.out.print("Enter the size of the physical product: ");
+            scanner.nextLine();
             String size = scanner.nextLine();
-            System.out.println("Enter the weight of the physical product: ");
+            System.out.print("Enter the weight of the physical product: ");
             double weight = scanner.nextDouble();
             scanner.nextLine();
-            System.out.println("Enter the color of the physical product: ");
+            System.out.print("Enter the color of the physical product: ");
             String color = scanner.nextLine();
 
             PhysicalProduct physicalProduct = new PhysicalProduct(name, price, sku, size, weight, color);
             productList.add(physicalProduct);
-            System.out.println("Physical product added successfully !");
+            System.out.println();
+            System.out.print("Physical product added successfully !");
             break;
         } else if (choice == 2) {
-            System.out.println("Enter the format of the digital product: ");
+            scanner.nextLine();
+            System.out.print("Enter the format of the digital product: ");
             String format = scanner.nextLine();
-            System.out.println("Enter the download link of the digital product: ");
+            System.out.print("Enter the download link of the digital product: ");
             String downloadLink = scanner.nextLine();
 
             DigitalProduct digitalProduct = new DigitalProduct(name, price, sku, format, downloadLink);
             productList.add(digitalProduct);
-            System.out.println("Digital product added successfully !");
+            System.out.println();
+            System.out.print("Digital product added successfully !");
             break;
         } else {
-            System.out.println("Invalid choice. Please try again.");
+            System.out.print("Invalid choice. Please try again.");
         }
     }
 }
@@ -120,25 +135,30 @@ private static void addNewProduct() {
         for (int i = 0; i < productList.size(); i++) {
             Product p = productList.get(i);
             // print out the index
+            System.out.println("ProductIndex: " + i);
             p.displayDetails();
             System.out.println();
         }
-        System.out.println("Choose an option: ");
-        System.out.println("1. Exit");
-        System.out.println("2. Edit a product");
-        System.out.println("3. Delete a product");
-        int option = scanner.nextInt();
 
-        if (option == 2) {
-            System.out.println("Enter the index of the product you want to edit: ");
+        System.out.println("Choose an option: ");
+        System.out.println("1. Edit a product");
+        System.out.println("2. Delete a product");
+        System.out.println("3. Exit");
+        System.out.print("Enter your option: ");
+        int option = scanner.nextInt();
+        System.out.println();
+
+        if (option == 1) {
+            System.out.print("Enter the index of the product you want to edit: ");
             int index = scanner.nextInt();
             if (index >= 0 && index < productList.size()) {
                 Product productToEdit = productList.get(index);
+                System.out.println("ProductIndex To Edit: " + index);
                 editProduct(productToEdit);
             } else {
-                System.out.println("Invalid index.");
+                System.out.print("Invalid index.");
             }
-        } else if (option == 3) {
+        } else if (option == 2) {
             System.out.println("Enter the index of the product you want to delete: ");
             int index = scanner.nextInt();
             if (index >=0 && index < productList.size()) {
@@ -151,7 +171,6 @@ private static void addNewProduct() {
     }
 
     public static void editProduct(Product p) {
-
         p.editDetails();
     }
 
@@ -172,7 +191,7 @@ private static void addNewProduct() {
         System.out.println("Taxable Items: ");
 
         for (ITaxable item : taxableItems) {
-            System.out.println("SaleS Tax: $" + item.calculateSalesTax());
+            System.out.println("Sales Tax: $" + item.calculateSalesTax());
             System.out.println("----------------------");
         }
     }

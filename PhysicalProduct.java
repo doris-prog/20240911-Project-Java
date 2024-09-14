@@ -49,7 +49,7 @@ public class PhysicalProduct extends Product {
     @Override
     public void displayDetails() {
         super.displayDetails();
-        System.out.println("Physical Product Size: " + getSize());
+        System.out.println("Physical Product Size: " + getSize() + " cm");
         System.out.println("Physical Product Weight: " + getWeight() + " lbs");
         System.out.println("Physical Product Color: " + getColor());
     }
@@ -59,16 +59,18 @@ public class PhysicalProduct extends Product {
         super.editDetails();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the new size: ");
+        System.out.print("Enter the new size: ");
         String newSize = scanner.nextLine();
         this.setSize(newSize);
 
-        System.out.println("Enter new weight: ");
-        Double newWeight = scanner.nextDouble();
+        System.out.print("Enter new weight: ");
+        double newWeight = scanner.nextDouble();
         this.setWeight(newWeight);
+        scanner.nextLine();
 
-        System.out.println("Enter new color: ");
+        System.out.print("Enter new color: ");
         String newColor = scanner.nextLine();
         this.setColor(newColor);
+
     }
 }

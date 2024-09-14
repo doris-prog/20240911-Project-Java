@@ -24,10 +24,6 @@ public class Membership implements ITaxable {
         this.cost = cost;
     }
 
-//    public double calculateSalesTax() {
-//        return this.cost * 0.3;
-//    }
-
     @Override
     public double calculateSalesTax() {
         double taxPercentage = 0.05; // 5% tax rate

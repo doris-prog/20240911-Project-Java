@@ -47,11 +47,12 @@ public class DigitalProduct extends Product {
         super.editDetails();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter new format: ");
+        System.out.print("Enter new format: ");
         String newFormat = scanner.nextLine();
         this.setFormat(newFormat);
 
-        System.out.println("Enter new download link: ");
+
+        System.out.print("Enter new download link: ");
         String newDownloadLink = scanner.nextLine();
         this.setDownloadLink(newDownloadLink);
     }

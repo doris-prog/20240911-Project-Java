@@ -62,16 +62,15 @@ public abstract class Product implements ITaxable {
         String newName = scanner.nextLine();
         this.setName(newName);
 
-        System.out.println("Enter new price: ");
+        System.out.print("Enter new price: ");
         double newPrice = scanner.nextDouble();
         this.setPrice(newPrice);
+        scanner.nextLine();
 
-        System.out.println("Enter new SKU: ");
+        System.out.print("Enter new SKU: ");
         String newSku = scanner.nextLine();
         this.setSku(newSku);
     }
-
-//    public abstract double calculateSalesTax();
 
     @Override
     public double calculateSalesTax() {
