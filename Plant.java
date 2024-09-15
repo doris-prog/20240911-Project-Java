@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public abstract class Product implements ITaxable {
+public abstract class Plant implements ITaxable {
     private String name;
     private double price;
     private String sku;
 
-    public Product() {
+    public Plant() {
         // Default constructor
         this.name = "N/A";
         this.price = 0.0;
@@ -13,12 +13,12 @@ public abstract class Product implements ITaxable {
     }
 
     public void displayDetails() {
-        System.out.println("Product Name: " + getSku());
-        System.out.println("Product Price: " + getPrice());
-        System.out.println("Product SKU: " + getSku());
+        System.out.println("Plant Name: " + getName());
+        System.out.println("Plant Price: " + getPrice());
+        System.out.println("Plant SKU: " + getSku());
     }
 
-    public Product(String name, double price, String sku) {
+    public Plant(String name, double price, String sku) {
         this.name = name;
         this.price = price;
         this.sku = sku;
